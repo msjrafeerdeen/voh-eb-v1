@@ -1,0 +1,19 @@
+Service:
+    name: voh-api-3
+Provider:
+    name: aws
+    runtime: nodejs12.x
+
+Package:
+    individually: true
+
+Functions:
+    main:
+        handler: dist/main.handler
+        events:
+            - http:
+                method: ANY
+                path: /
+            - http:
+                method: ANY
+                path: '{proxy+}'
