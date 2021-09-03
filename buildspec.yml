@@ -20,3 +20,4 @@ artifacts:
     - request-map.js
     - credentials.json
     - node_modules/**/*
+    - package.json
