@@ -1,0 +1,21 @@
+version: 0.2
+
+env: 
+  variables: 
+    bucket_name: "codepipeline-us-east-1-855735414535"
+
+phases:
+  install:
+    commands:
+      - npm install
+      - npm run start
+  pre_build:
+    commands:
+      - npm test    
+  build:
+    commands:
+      # Use AWS SAM to package the application by using AWS CloudFormation
+      - aws cloudformation package --template template.yml --s3-bucket $bucket_name --output-template-file appspec.yaml
+artifacts:
+  files:
+    - appspecs.yaml

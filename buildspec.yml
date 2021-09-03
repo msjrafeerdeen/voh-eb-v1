@@ -1,21 +1,22 @@
 version: 0.2
-
-env: 
-  variables: 
-    bucket_name: "codepipeline-us-east-1-855735414535"
-
 phases:
-  install:
-    commands:
-      - npm install
-      - npm run start
   pre_build:
     commands:
-      - npm test    
+      - echo Installing source NPM dependencies...
+      - npm install
   build:
     commands:
-      # Use AWS SAM to package the application by using AWS CloudFormation
-      - aws cloudformation package --template template.yml --s3-bucket $bucket_name --output-template-file appspec.yaml
+      - echo Build started on `date`
+      - echo Compiling the dist folder
+      - npm run-script build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+# Include only the files required for your application to run.
 artifacts:
   files:
-    - appspecs.yaml
+    - index.js
+    - dist/**/*
+    - request-map.js
+    - credentials.json
+    - node_modules/**/*
