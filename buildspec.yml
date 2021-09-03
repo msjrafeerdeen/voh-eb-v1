@@ -21,3 +21,5 @@ artifacts:
     - credentials.json
     - node_modules/**/*
     - package.json
+    - src/index.js
+    - src/app.js
