@@ -15,11 +15,8 @@ phases:
 # Include only the files required for your application to run.
 artifacts:
   files:
-    - index.js
     - dist/**/*
-    - request-map.js
-    - credentials.json
     - node_modules/**/*
-    - package.json
-    - src/index.js
-    - src/app.js
+    - *.json
+    - src/**/*
+    - test/**/*
